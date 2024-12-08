@@ -1,3 +1,5 @@
+"use server";
+
 import type { ICart } from "@/models/Cart";
 import type { CartBase } from "@/types/cart";
 import { cookies } from "next/headers";
