@@ -1,3 +1,4 @@
+"use server";
 import dbConnect from "./dbConnect";
 import ProductModel, { type IProduct } from "@/models/Product";
 
