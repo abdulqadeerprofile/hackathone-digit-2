@@ -1,46 +1,36 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
-import Header from "@/components/features/Header/Header";
-import Footer from "@/components/features/Footer/Footer";
-import Banner from "@/components/features/Banner/Banner";
-import Providers from "@/components/shared/Providers/Providers";
 import "./globals.css";
 
-const satoshi = localFont({
-  src: "./fonts/Satoshi-Regular.woff2",
-  weight: "400",
-  display: "swap",
-  style: "normal",
-  variable: "--font-family",
+// Load fonts locally
+const clashReg = localFont({
+  src: "./fonts/ClashDisplay-Regular.otf",
+  variable: "--font-clash-reg", // Updated variable name
+  weight: "100 900",
 });
 
-const clashDisplay = localFont({
-  src: "./fonts/ClashDisplay-Regular.woff2",
-  weight: "400",
-  display: "swap",
-  style: "normal",
-  variable: "--second-family",
+const clashMed = localFont({
+  src: "./fonts/ClashDisplay-Medium.otf",
+  variable: "--font-clash-med", // Updated variable name
+  weight: "100 900",
 });
 
 export const metadata: Metadata = {
   title: "Avion",
-  description: "Avionapp",
+  description: "Luxury homeware for the modern generation",
 };
 
-export default async function RootLayout({
+export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
   return (
     <html lang="en">
-      <body className={`${satoshi.variable} ${clashDisplay.variable}`}>
-        <Providers>
-          <Banner />
-          <Header />
-          {children}
-          <Footer />
-        </Providers>
+      <body
+        className={`${clashReg.variable} ${clashMed.variable} antialiased`} // Correctly use the font variable classes
+      >
+        {children}
       </body>
     </html>
   );

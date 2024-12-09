@@ -1,19 +1,18 @@
-import dynamic from "next/dynamic";
-import Features from "@/components/features/Features/Features";
-import JoinUs from "@/components/features/JoinUs/JoinUs";
-import Page from "@/components/shared/Page/Page";
-
-import Hero from "./hero";
-import Info from "./info";
-  
-
+import { Navbar } from "@/components/Navbar";
+import Hero from "@/components/hero-banner"
+import Features from "@/components/features-section"
+import News from "@/components/newsletter-section"
+import Hero2 from "@/components/hero-section"
+import Footer from "@/components/footer"
 export default function Home() {
   return (
-    <Page>
-      <Hero />
-      <Features />      
-      <JoinUs />
-      <Info />
-    </Page>
-  );
+    <>
+    <Navbar/>
+    <Hero />
+    <Features/>
+    <Hero2/>
+    <News/>
+    <Footer/>
+    </>
+  )
 }

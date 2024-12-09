@@ -1,82 +1,84 @@
 import type { Config } from "tailwindcss";
-import plugin from "tailwindcss/plugin";
 
-const config: Config = {
-  content: [
+export default {
+    darkMode: ["class"],
+    content: [
     "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
-    "./src/features/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
-    colors: {
-      darkPrimary: "var(--dark-primary)",
-      primary: "var(--primary)",
-      lightGrey: "var(--light-grey)",
-      borderGrey: "var(--border-grey)",
-      borderDark: "var(--border-dark)",
-      white: "var(--white)",
-      darkChair: "var(--images---dark-chair)",
-      grey: "var(--grey)",
-      error: "#f44336",
-
-      buttonLight: "#F9F9F926",
-      textLight: "#505977",
-    },
-
-    screens: {
-      "2xl": { max: "1535px" },
-      xl: { max: "1279px" },
-      lg: { max: "1023px" },
-      md: { max: "836px" },
-      sm: { max: "639px" },
-      exsm: { max: "380px" },
-    },
-
-    extend: {
-      fontFamily: {
-        primary: ["var(--font-family)"],
-        second: ["var(--second-family)"],
-        default: ["var(--second-family)"],
-      },
-      screens: {
-        "hover-hover": { raw: "(hover: hover)" },
-        "hover-none": { raw: "(hover: none)" },
-      },
-
-      keyframes: {
-        blink: {
-          "0%": { opacity: "0.2" },
-          "20%": { opacity: "1" },
-          "100% ": { opacity: "0.2" },
-        },
-      },
-
-      animation: {
-        blink: "blink 1.4s both infinite",
-      },
-
-      boxShadow: {
-        custom: "1px 1px 4px 0 #151515",
-      },
-    },
+  	extend: {
+  		colors: {
+  			background: 'hsl(var(--background))',
+  			foreground: 'hsl(var(--foreground))',
+  			card: {
+  				DEFAULT: 'hsl(var(--card))',
+  				foreground: 'hsl(var(--card-foreground))'
+  			},
+  			popover: {
+  				DEFAULT: 'hsl(var(--popover))',
+  				foreground: 'hsl(var(--popover-foreground))'
+  			},
+  			primary: {
+  				DEFAULT: 'hsl(var(--primary))',
+  				foreground: 'hsl(var(--primary-foreground))'
+  			},
+  			secondary: {
+  				DEFAULT: 'hsl(var(--secondary))',
+  				foreground: 'hsl(var(--secondary-foreground))'
+  			},
+  			muted: {
+  				DEFAULT: 'hsl(var(--muted))',
+  				foreground: 'hsl(var(--muted-foreground))'
+  			},
+  			accent: {
+  				DEFAULT: 'hsl(var(--accent))',
+  				foreground: 'hsl(var(--accent-foreground))'
+  			},
+  			destructive: {
+  				DEFAULT: 'hsl(var(--destructive))',
+  				foreground: 'hsl(var(--destructive-foreground))'
+  			},
+  			border: 'hsl(var(--border))',
+  			input: 'hsl(var(--input))',
+  			ring: 'hsl(var(--ring))',
+  			chart: {
+  				'1': 'hsl(var(--chart-1))',
+  				'2': 'hsl(var(--chart-2))',
+  				'3': 'hsl(var(--chart-3))',
+  				'4': 'hsl(var(--chart-4))',
+  				'5': 'hsl(var(--chart-5))'
+  			}
+  		},
+  		borderRadius: {
+  			lg: 'var(--radius)',
+  			md: 'calc(var(--radius) - 2px)',
+  			sm: 'calc(var(--radius) - 4px)'
+  		},
+  		keyframes: {
+  			'accordion-down': {
+  				from: {
+  					height: '0'
+  				},
+  				to: {
+  					height: 'var(--radix-accordion-content-height)'
+  				}
+  			},
+  			'accordion-up': {
+  				from: {
+  					height: 'var(--radix-accordion-content-height)'
+  				},
+  				to: {
+  					height: '0'
+  				}
+  			}
+  		},
+  		animation: {
+  			'accordion-down': 'accordion-down 0.2s ease-out',
+  			'accordion-up': 'accordion-up 0.2s ease-out'
+  		}
+  	}
   },
-  plugins: [
-    plugin(({ matchUtilities, theme }) => {
-      matchUtilities(
-        {
-          "animation-delay": (value) => {
-            return {
-              "animation-delay": value,
-            };
-          },
-        },
-        {
-          values: theme("transitionDelay"),
-        }
-      );
-    }),
-  ],
-};
-
-export default config;
+  plugins: [require("tailwindcss-animate")],
+} satisfies Config;

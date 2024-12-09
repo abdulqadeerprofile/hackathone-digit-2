@@ -1,18 +1,13 @@
-import dynamic from "next/dynamic";
-import Page from "@/components/shared/Page/Page";
-import CartSkeleton from "./cart-skeleton";
+import { Navbar} from "@/components/Navbar"
+import Cart from "@/components/cart"
+import Footer from "@/components/footer"
 
-const CartMenu = dynamic(() => import("./menu"), {
-  ssr: false,
-  loading: () => <CartSkeleton />,
-});
-
-function Cart() {
-  return (
-    <Page>
-      <CartMenu />
-    </Page>
-  );
+export default function Checkout() {
+    return (
+        <>
+        <Navbar/>
+        <Cart/>
+        <Footer/>
+        </>
+    )
 }
-
-export default Cart;
