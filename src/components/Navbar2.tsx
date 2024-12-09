@@ -1,17 +1,8 @@
-"use client"
-
-import * as React from "react"
+import React, { useState } from "react"
 import Link from "next/link"
 import { Search } from 'lucide-react'
 
-import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
-import {
-  NavigationMenu,
-  NavigationMenuItem,
-  NavigationMenuLink,
-  NavigationMenuList,
-} from "@/components/ui/navigation-menu"
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
 
 const categories = [
@@ -26,8 +17,7 @@ const categories = [
 ]
 
 export function Navbar2() {
-  const [isOpen, setIsOpen] = React.useState(false)
-  const [cartItemCount, setCartItemCount] = React.useState(0) // This will store the number of items in the cart
+  const [isOpen, setIsOpen] = useState(false)
 
   return (
     <div className="w-full">
@@ -63,9 +53,6 @@ export function Navbar2() {
             <a href="/cart">
               <Button variant="ghost" size="icon" className="relative">
                 <img src="/icons/Shopping--cart.svg" alt="Shopping Cart" className="h-5 w-5 text-gray-600 hover:text-gray-900" />
-                <span className="absolute right-1 top-1 flex h-4 w-4 items-center justify-center rounded-full bg-black text-xs text-white">
-                  {cartItemCount} {/* This dynamically shows the cart item count */}
-                </span>
               </Button>
             </a>
           </div>
@@ -92,14 +79,6 @@ export function Navbar2() {
                 </nav>
               </SheetContent>
             </Sheet>
-            <a href="/cart">
-              <Button variant="ghost" size="icon" className="relative">
-                <img src="/icons/Shopping--cart.svg" alt="Shopping Cart" className="h-5 w-5 text-gray-600 hover:text-gray-900" />
-                <span className="absolute right-1 top-1 flex h-4 w-4 items-center justify-center rounded-full bg-black text-xs text-white">
-                  {cartItemCount} {/* Cart item count for mobile */}
-                </span>
-              </Button>
-            </a>
           </div>
         </div>
       </div>
@@ -107,24 +86,20 @@ export function Navbar2() {
       {/* Categories Navigation */}
       <div className="border-b">
         <div className="mx-auto max-w-[1440px] px-4 sm:px-6">
-          <NavigationMenu className="mx-auto">
-            <NavigationMenuList className="hidden space-x-8 md:flex">
+          <nav className="mx-auto">
+            <div className="hidden space-x-8 md:flex">
               {categories.map((category) => (
-                <NavigationMenuItem key={category}>
-                  <NavigationMenuLink
+                <div key={category}>
+                  <Link
                     href="/products"
-                    className={cn(
-                      "group inline-flex h-14 w-max items-center justify-center text-sm font-medium transition-colors hover:text-gray-900",
-                      "text-gray-600 hover:text-gray-900",
-                      "font-[var(--font-clash-reg)]"  // Applying custom font for categories
-                    )}
+                    className="group inline-flex h-14 w-max items-center justify-center text-sm font-medium transition-colors hover:text-gray-900 text-gray-600"
                   >
                     {category}
-                  </NavigationMenuLink>
-                </NavigationMenuItem>
+                  </Link>
+                </div>
               ))}
-            </NavigationMenuList>
-          </NavigationMenu>
+            </div>
+          </nav>
 
           {/* Mobile Categories */}
           <div className="scrollbar-none flex overflow-x-auto py-4 md:hidden">
@@ -133,7 +108,7 @@ export function Navbar2() {
                 key={category}
                 href="/products"
                 className="whitespace-nowrap px-4 text-sm text-gray-600 hover:text-gray-900"
-                style={{ fontFamily: 'var(--font-clash-reg)' }} // Font for mobile categories
+                style={{ fontFamily: 'var(--font-clash-reg)' }}
               >
                 {category}
               </Link>
